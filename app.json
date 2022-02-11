@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "KoshaAnalytics",
-    "slug": "kosha_Analytics",
-    "version": "3.0.0",
+    "name": "KohsaAnalyticsAdmin App",
+    "slug": "kohsa_Analytics",
+    "version": "3.1.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -21,7 +21,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -49,6 +51,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "This admin app is used by the admin of the Attendance management App => [ https://github.com/avik-goon/employeeattendanceApp ]\nView the main Attendance management App [https://expo.dev/@avikgoon/projects/kosha_Analytics_employee]",
+    "githubUrl": "https://github.com/avik-goon/employeeattendanceAdminApp"
   }
 }

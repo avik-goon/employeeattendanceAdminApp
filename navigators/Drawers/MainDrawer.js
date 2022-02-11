@@ -44,7 +44,7 @@ export default function DrawerRoutes() {
                 },
                 drawerStyle: {
                     backgroundColor: useColorModeValue("#fff", "#0f172a"),
-                    width: 240,
+                    width: 260
                 },
                 headerRight: () => (
                     <Pressable mr="1" px="1" onPress={() => toggleColorMode()} >

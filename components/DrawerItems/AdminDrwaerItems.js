@@ -29,8 +29,8 @@ const AdminDrawerItems = (props) => {
 export function ProfileAvatar(props) {
 
   return (
-    <Box style={styles.userInfoSection}>
-      <Box style={{ flexDirection: "row", alignItems: "center" }}>
+    <Box style={styles.userInfoSection} >
+      <Box style={{ flexDirection: "row", alignItems: "center", width: "100%" }} >
         <Box>
           <Avatar
             size="lg"
@@ -41,7 +41,7 @@ export function ProfileAvatar(props) {
             AK
           </Avatar>
         </Box>
-        <Box >
+        <Box w={'100%'} >
           <Text style={({ ...styles.title }, { color: props.colorCode, fontSize: 22, marginLeft: 10, fontFamily: "Oswald_600SemiBold", paddingTop: 5 })}>
             {props.name}
           </Text>
@@ -61,11 +61,12 @@ export function ProfileAvatar(props) {
 const styles = StyleSheet.create({
   userInfoSection: {
     paddingLeft: 20,
+    width: 200
   },
   title: {
     fontSize: 16,
     marginTop: 3,
-
+    flexWrap: 'wrap'
   },
   caption: {
     fontSize: 14,

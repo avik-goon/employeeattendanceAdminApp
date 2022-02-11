@@ -7,6 +7,7 @@ import date from 'date-and-time';
 import { Image, TouchableOpacity } from 'react-native';
 import { CommonActions } from '@react-navigation/native';
 import getEmployeeLoginLocations from '../controller/getEmployeeLoginLocations';
+import { useSelector } from 'react-redux';
 const EmployeeRecord = ({ route, navigation }) => {
     const empID = route.params.id;
     const empData = [...route.params.EMP_State_Data]
@@ -17,6 +18,8 @@ const EmployeeRecord = ({ route, navigation }) => {
     const [attendanceCountByMonth, setAttendanceCountByMonth] = useState(0);
     const [attendanceView, setAttendanceView] = useState({});
     const [loading, setLoading] = useState(false);
+    const leaveRecordData = useSelector(state => state.leaveRecordsData.leaveData.filter(lr => lr.userID === empID));
+
     useEffect(() => {
         getAttendenceByID(empID).then(record => {
             if (record !== -1 && record !== undefined) {
@@ -38,6 +41,13 @@ const EmployeeRecord = ({ route, navigation }) => {
         })
         //setAttendenceCount(getAttendanceCountByMonth(date.transform(date.format(now, 'DD/MM/YYYY'), 'DD/MM/YYYY', 'MM'), attendanceRecord), setAttendanceCountByMonth)
     }
+
+    if (leaveRecordData.length > 0) {
+        leaveRecordData.forEach((record) => {
+            attendanceMarker = { ...attendanceMarker, [date.transform(record.proposedLeaveDate, 'DD/MM/YYYY', 'YYYY-MM-DD')]: { selected: true, marked: true, selectedColor: 'red' } }
+        })
+    }
+
     const brdrCLR = useColorModeValue('#06b6d4', '#cffafe');
     return (
         <Box

@@ -141,6 +141,6 @@ function BrandIcon() {
 }
 function BrandHeading() {
     return (
-        <Heading size="lg" py="2" borderBottomWidth="0.5" borderBottomColor={useColorModeValue("#333", "#fff")}>Welcome to Kosha Analytics</Heading>
+        <Heading size="lg" py="2" borderBottomWidth="0.5" borderBottomColor={useColorModeValue("#333", "#fff")}>Welcome to Kohsa Analytics</Heading>
     )
 }

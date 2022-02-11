@@ -6,15 +6,16 @@ import CreateAdminData from "./reducers/CreateAdminData";
 import EmployeeLists from "./reducers/EmployeeLists";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import leaveRecordCounter from "./reducers/leaveRecordCounter";
-
+import leaveRecordsData from '../store/reducers/leaveRecords';
 const composeEnhancers = composeWithDevTools({
-    trace: true
+  trace: true
 });
 const rootReducer = combineReducers({
-    loggedInUser: CreateUserDetails,
-    admin: CreateAdminData,
-    employeeState: EmployeeLists,
-    leaveRecordCounter: leaveRecordCounter
+  loggedInUser: CreateUserDetails,
+  admin: CreateAdminData,
+  employeeState: EmployeeLists,
+  leaveRecordCounter: leaveRecordCounter,
+  leaveRecordsData: leaveRecordsData
 });
 
 const store = configureStore({ reducer: rootReducer })
