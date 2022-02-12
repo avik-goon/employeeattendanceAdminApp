@@ -15,7 +15,7 @@ import EmployeeProfileScreen from "../../screens/EmployeeProfilesScreen";
 import LeaveRequest from "../../screens/LeaveRequest";
 import Settings from "../../screens/Settings";
 import { useSelector } from "react-redux";
-
+import LocationDetails from "../../screens/LocationDetails";
 export default function DrawerRoutes() {
     const { colorMode, toggleColorMode } = useColorMode();
     const leaveCounter = useSelector((state) => state.leaveRecordCounter.leaveCounter)
@@ -186,7 +186,7 @@ export default function DrawerRoutes() {
                 },
 
             }} />
-            {/* <Drawer.Screen name="LocationDetails" component={LocationDetails} options={{
+            <Drawer.Screen name="LocationDetails" component={LocationDetails} options={{
                 title: "Location Details",
                 drawerIcon: ({ focused, size }) => {
                     if (colorMode === "light")
@@ -206,7 +206,7 @@ export default function DrawerRoutes() {
 
                 },
 
-            }} /> */}
+            }} />
             <Drawer.Screen name="Settings" component={Settings} options={{
                 title: "Settings",
                 drawerIcon: ({ focused, size }) => {

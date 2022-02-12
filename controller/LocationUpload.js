@@ -2,6 +2,7 @@ import dbh from "../config/db.config";
 
 export default async function uploadLocationDetails(locationDetails, setIsUploading) {
     // Add a new document with a generated id.
+    locationDetails = { ...locationDetails, status: 'active' }
     try {
         const res = await dbh.collection('locations').add(locationDetails);
         console.log('Added document with ID: ', res.id);
