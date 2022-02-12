@@ -2,7 +2,7 @@ import dbh from "../config/db.config";
 import * as Firebase from "firebase";
 export default async function uploadEmployeeDetails(employeeDetails, setIsUploading) {
     // Add a new document with a generated id.
-
+    employeeDetails = { ...employeeDetails, status: 'active' }
     const filename = 'img_' + employeeDetails.filename;
     const image_url = employeeDetails.image_url;
     const blob = await new Promise((resolve, reject) => {

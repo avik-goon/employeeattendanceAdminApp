@@ -2,7 +2,7 @@ import dbh from "../config/db.config";
 import store from "../store/store";
 import { employeEvent } from "../store/reducers/EmployeeLists";
 export default function getAllEmployee(setState) {
-    const query = dbh.collection('employee');
+    const query = dbh.collection('employee').where('status', '==', 'active');
 
     query.onSnapshot(querySnapshot => {
         const empList = [];

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Dimensions } from 'react-native';
-
+import setEmpInactive from '../controller/DeleteEmploye';
 import {
     Box,
     Text,
@@ -19,7 +19,7 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 import { MaterialIcons, Ionicons, Entypo } from '@expo/vector-icons';
 import getAllEmployee from '../controller/GetallEmployee';
 import RelaxSVG from '../components/RelaxSvg';
-
+import { useToast } from 'native-base';
 export default function EmployeeProfileScreen({ navigation }) {
 
     return (
@@ -38,7 +38,12 @@ export default function EmployeeProfileScreen({ navigation }) {
 function Basic({ navigation }) {
     const [listData, setListData] = useState([]);
     useEffect(() => {
-        getAllEmployee(setListData);
+        let isMounted = true;
+        if (isMounted)
+            getAllEmployee(setListData);
+        return () => {
+            isMounted = false;
+        }
     }, []);
 
 
@@ -83,9 +88,26 @@ function Basic({ navigation }) {
             </Box>
         )
     };
+    const toast = useToast();
+
+    const deleteRow = (rowMap, rowKey, id) => {
+        setEmpInactive(id).then(r => {
+            if (r === 1) {
+                closeRow(rowMap, rowKey);
+                const newData = [...listData];
+                const prevIndex = listData.findIndex(item => item.key === rowKey);
+                newData.splice(prevIndex, 1);
+                setListData(newData);
+            } else {
+                toast.show({
+                    description: "Deletion Failed!"
+                })
+            }
+        })
+    }
+
 
     const renderHiddenItem = (data, rowMap) => {
-
         return (
             <HStack flex="1" pl="2">
                 <Pressable
@@ -111,10 +133,19 @@ function Basic({ navigation }) {
                         </Text>
                     </VStack>
                 </Pressable>
+                <Pressable w="70" bg="red.500" justifyContent="center" onPress={() => deleteRow(rowMap, data.item.key, data.item.id)} _pressed={{
+                    opacity: 0.5
+                }}>
+                    <VStack alignItems="center" space={2}>
+                        <Icon as={<MaterialIcons name="delete" />} color="white" size="xs" />
+                        <Text color="white" fontSize="xs" fontWeight="medium">
+                            Delete
+                        </Text>
+                    </VStack>
+                </Pressable>
             </HStack>
         )
     }
-
     if (listData.length > 0) {
         return (
             <Box _dark={{ bg: "blueGray.900" }}
